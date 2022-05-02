@@ -9,7 +9,8 @@ const envSchema = joi
 .object()
 .keys({
     Node_ENV: joi.string().valid('developement', 'production').required(),
-    Port: joi.number().positive().required()
+    Port: joi.number().positive().required(),
+    ORIGIN: joi.string().uri().required()
  })
 .unknown()
 
