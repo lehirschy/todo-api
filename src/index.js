@@ -5,6 +5,7 @@ import logger from './utils/logger'
 import cors from 'cors'
 import { config } from 'dotenv'
 import errors from './utils/errors'
+import router from './routes'
 
 const app = express()
 
@@ -17,11 +18,8 @@ app.use(
         origin: config.origin
     })
 )
+app.use(router)
 
-app.get('/', (req, res) => {
-    logger.log.success('Calling Root')
-    res.send({msg: 'Hello There!'})
-})
 app.use(errors.notFound)
 app.use(errors.errorHandler)
 app.listen(port)
