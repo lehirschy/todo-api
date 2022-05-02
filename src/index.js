@@ -4,6 +4,7 @@ import env from './utils/config'
 import logger from './utils/logger'
 import cors from 'cors'
 import { config } from 'dotenv'
+import errors from './utils/errors'
 
 const app = express()
 
@@ -21,5 +22,6 @@ app.get('/', (req, res) => {
     logger.log.success('Calling Root')
     res.send({msg: 'Hello There!'})
 })
-
+app.use(errors.notFound)
+app.use(errors.errorHandler)
 app.listen(port)
