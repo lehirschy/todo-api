@@ -8,7 +8,7 @@ dotenv.config()
 const envSchema = joi
 .object()
 .keys({
-    Node_ENV: joi.string().valid('developement', 'production').required(),
+    Node_ENV: joi.string().valid('development', 'production').required(),
     Port: joi.number().positive().required(),
     ORIGIN: joi.string().uri().required()
  })
@@ -20,4 +20,8 @@ if (error) {
     logger.log.error (new Error('Config validation error: ${error.message}'))
 }
 
-export default env
+export default {
+    nodeEnv: env.Node_ENV,
+    port: env.Port,
+    origin: env.ORIGIN,
+}
