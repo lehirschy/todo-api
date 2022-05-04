@@ -5,6 +5,7 @@ import cors from 'cors'
 import config from './utils/config'
 import logger from './utils/logger'
 import errors from './utils/errors'
+import auth from './utils/auth'
 import router from './routes'
 
 const app = express()
@@ -19,6 +20,7 @@ app.use(
         origin: config.origin,
     }),
 )
+app.use(auth.initialize())
 app.use(router)
 
 app.use(errors.notFound)
